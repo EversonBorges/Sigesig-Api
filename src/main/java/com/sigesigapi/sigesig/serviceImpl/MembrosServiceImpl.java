@@ -1,6 +1,7 @@
 package com.sigesigapi.sigesig.serviceImpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -24,8 +25,8 @@ public class MembrosServiceImpl implements CommonService<Membros>{
 	}
 
 	@Override
-	public Membros buscarId(Long id) {
-		return membroRepository.getOne(id);
+	public Optional<Membros> buscarId(Long id) {
+		return membroRepository.findById(id);
 	}
 
 	@Override

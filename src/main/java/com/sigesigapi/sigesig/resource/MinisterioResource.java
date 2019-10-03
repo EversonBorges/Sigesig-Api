@@ -1,6 +1,7 @@
 package com.sigesigapi.sigesig.resource;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -48,30 +49,36 @@ public class MinisterioResource {
 	@GetMapping("/{idMinisterio}")
 	public ResponseEntity<Ministerio> buscarId(@PathVariable("idMinisterio")Long idMinisterio) {
 		
-		Ministerio retorno = ministerioServiceImpl.buscarId(idMinisterio);
+		Optional<Ministerio> retorno = ministerioServiceImpl.buscarId(idMinisterio);
 		
-		return retorno != null ?  ResponseEntity.ok(retorno):
-			ResponseEntity.notFound().build();
+		return retorno.isPresent() ? new ResponseEntity<Ministerio>(retorno.get(),HttpStatus.OK) :
+			new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
 	@PutMapping("/{idMinisterio}")
-	public ResponseEntity<Ministerio> atualizar(@Valid @RequestBody Ministerio ministerio, @PathVariable("idMinisterio") Long IdMinisterio){
-		Ministerio retorno = ministerioServiceImpl.buscarId(IdMinisterio);
+	public ResponseEntity<Ministerio> atualizar(@Valid @RequestBody Ministerio newMinisterio, @PathVariable("idMinisterio") Long idMinisterio){
+		Optional<Ministerio> retorno = ministerioServiceImpl.buscarId(idMinisterio);
 		
-		retorno.setDescMinisterio(ministerio.getDescMinisterio());
-		
-		Ministerio retornoAtualizar = ministerioServiceImpl.salvar(retorno);
-		
-		return retorno != null ?  ResponseEntity.ok(retornoAtualizar):
-			ResponseEntity.notFound().build();
+		if(retorno.isPresent()) {
+			Ministerio ministerio= retorno.get();
+			ministerio.setDescMinisterio(newMinisterio.getDescMinisterio());
+			ministerioServiceImpl.salvar(ministerio);
+			return new ResponseEntity<Ministerio>(ministerio,HttpStatus.OK);
+		}else
+		{
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 	
-	@DeleteMapping("/idMinisterio")
+	@DeleteMapping("/{idMinisterio}")
 	public ResponseEntity<?> deletar(@PathVariable("idMinisterio") Long idMinisterio) {
 		
-		Ministerio retorno = ministerioServiceImpl.buscarId(idMinisterio);
-		ministerioServiceImpl.remover(retorno);
-		
-		return ResponseEntity.ok().build();
-	}
+		Optional<Ministerio> retorno = ministerioServiceImpl.buscarId(idMinisterio);
+	        if(retorno.isPresent()){
+	        	ministerioServiceImpl.remover(retorno.get());
+	            return new ResponseEntity<>(HttpStatus.OK);
+	        }
+	        else
+	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    }
 }

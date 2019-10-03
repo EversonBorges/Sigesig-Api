@@ -1,6 +1,7 @@
 package com.sigesigapi.sigesig.serviceImpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,8 +28,8 @@ public class MinisterioServiceImpl implements CommonService<Ministerio>{
 	}
 
 	@Override
-	public Ministerio buscarId(Long id) {
-		return mr.getOne(id);
+	public Optional<Ministerio> buscarId(Long id) {
+		return mr.findById(id);
 	}
 
 	@Override
