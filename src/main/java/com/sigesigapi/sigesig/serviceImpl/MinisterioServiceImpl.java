@@ -36,4 +36,12 @@ public class MinisterioServiceImpl implements CommonService<Ministerio>{
 	public void remover(Ministerio entity) {
 		mr.delete(entity);
 	}
+
+	@Override
+	public Ministerio setDadosAtualizar(Ministerio newMinisterio, Optional<Ministerio> retorno) {
+		Ministerio ministerio= retorno.get();
+		ministerio.setDescMinisterio(newMinisterio.getDescMinisterio());
+		mr.save(ministerio);
+		return ministerio;
+	}
 }

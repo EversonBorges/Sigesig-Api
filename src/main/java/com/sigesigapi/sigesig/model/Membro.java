@@ -1,7 +1,9 @@
 package com.sigesigapi.sigesig.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -15,13 +17,15 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
-import com.sigesigapi.sigesig.Status;
 import com.sigesigapi.sigesig.enums.Opcao;
 import com.sigesigapi.sigesig.enums.Sexo;
+import com.sigesigapi.sigesig.enums.Status;
 
 @Entity
 @Table(name = "membro")
-public class Membros {
+public class Membro implements Serializable{
+
+	private static final long serialVersionUID = -8673684793733268061L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,7 +48,7 @@ public class Membros {
 	@Temporal(TemporalType.DATE)
 	private Calendar dtNasc;
 	
-	//@ManyToOne
+	@ManyToOne
 	private Ministerio ministerio;
 	
 	@NotNull
@@ -55,8 +59,8 @@ public class Membros {
 	@Enumerated(EnumType.STRING)
 	private Sexo sexo;
 	
-	//@ManyToOne
-	//private Templo templo;
+	@ManyToOne
+	private Templo templo;
 	
 	@NotNull
 	private int idade;
@@ -145,13 +149,13 @@ public class Membros {
 		this.sexo = sexo;
 	}
 
-	//public Templo getTemplo() {
-		//return templo;
-	//}
+	public Templo getTemplo() {
+		return templo;
+	}
 
-	//public void setTemplo(Templo templo) {
-		//this.templo = templo;
-	//}
+	public void setTemplo(Templo templo) {
+		this.templo = templo;
+	}
 
 	public int getIdade() {
 		return idade;
@@ -217,7 +221,7 @@ public class Membros {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Membros other = (Membros) obj;
+		Membro other = (Membro) obj;
 		if (idMembro == null) {
 			if (other.idMembro != null)
 				return false;

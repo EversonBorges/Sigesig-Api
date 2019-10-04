@@ -1,4 +1,4 @@
-package com.sigesigapi.sigesig.resource;
+package com.sigesigapi.sigesig.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +25,7 @@ import com.sigesigapi.sigesig.serviceImpl.MinisterioServiceImpl;
 
 @RestController
 @RequestMapping("/ministerios")
-public class MinisterioResource {
+public class MinisterioController {
 	
 	@Autowired
 	private  MinisterioServiceImpl ministerioServiceImpl;
@@ -56,16 +56,15 @@ public class MinisterioResource {
 	}
 	
 	@PutMapping("/{idMinisterio}")
-	public ResponseEntity<Ministerio> atualizar(@Valid @RequestBody Ministerio newMinisterio, @PathVariable("idMinisterio") Long idMinisterio){
+	public ResponseEntity<Ministerio> atualizar(@Valid @RequestBody Ministerio newMinisterio, 
+			@PathVariable("idMinisterio") Long idMinisterio){
+		
 		Optional<Ministerio> retorno = ministerioServiceImpl.buscarId(idMinisterio);
 		
 		if(retorno.isPresent()) {
-			Ministerio ministerio= retorno.get();
-			ministerio.setDescMinisterio(newMinisterio.getDescMinisterio());
-			ministerioServiceImpl.salvar(ministerio);
+			Ministerio ministerio = ministerioServiceImpl.setDadosAtualizar(newMinisterio, retorno);
 			return new ResponseEntity<Ministerio>(ministerio,HttpStatus.OK);
-		}else
-		{
+		}else{
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}

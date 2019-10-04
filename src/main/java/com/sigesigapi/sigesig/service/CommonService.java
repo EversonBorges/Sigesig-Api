@@ -9,4 +9,5 @@ public interface CommonService<T> {
 	T salvar(T entity);
 	Optional<T> buscarId(Long id);
 	void remover(T entity);
+	T setDadosAtualizar(T entity, Optional<T> retorno);
 }
