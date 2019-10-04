@@ -49,27 +49,26 @@ public class MembroServiceImpl implements CommonService<Membro>{
 		Optional<Ministerio> ministerio = ministerioServiceImpl.buscarId(entity.getMinisterio().getIdMinisterio());
 		Optional<Templo> templo = temploServiceImpl.buscarId(entity.getTemplo().getIdTemplo());
 		
-		Membro membro = retorno.get();
-		membro.setBatizado(entity.getBatizado());
-		membro.setCapacitacaoConcluido(entity.getCapacitacaoConcluido());
-		membro.setCpf(entity.getCpf());
-		membro.setDtNasc(entity.getDtNasc());
-		membro.setEndereco(membro.getEndereco());
-		membro.setIdade(entity.getIdade());
-		membro.setTurma(entity.getTurma());
-		membro.setMatriculaEscolaBiblica(entity.getMatriculaEscolaBiblica());
-		membro.setMatriculaLider(entity.getMatriculaLider());
-		membro.setMinisterio(ministerio.get());
-		membro.setNomeMembro(entity.getNomeMembro());
-		membro.setRg(entity.getRg());
-		membro.setSexo(entity.getSexo());
-		membro.setTemplo(templo.get());
-		membro.setTipo(entity.getTipo());
-		membro.setTurma(entity.getTurma());
-		membro.setEndereco(entity.getEndereco());
-		membroRepository.save(membro);
+		retorno.get().setBatizado(entity.getBatizado());
+		retorno.get().setCapacitacaoConcluido(entity.getCapacitacaoConcluido());
+		retorno.get().setCpf(entity.getCpf());
+		retorno.get().setDtNasc(entity.getDtNasc());
+		retorno.get().setEndereco(retorno.get().getEndereco());
+		retorno.get().setIdade(entity.getIdade());
+		retorno.get().setTurma(entity.getTurma());
+		retorno.get().setMatriculaEscolaBiblica(entity.getMatriculaEscolaBiblica());
+		retorno.get().setMatriculaLider(entity.getMatriculaLider());
+		retorno.get().setMinisterio(ministerio.get());
+		retorno.get().setNomeMembro(entity.getNomeMembro());
+		retorno.get().setRg(entity.getRg());
+		retorno.get().setSexo(entity.getSexo());
+		retorno.get().setTemplo(templo.get());
+		retorno.get().setTipo(entity.getTipo());
+		retorno.get().setTurma(entity.getTurma());
+		retorno.get().setEndereco(entity.getEndereco());
+		membroRepository.save(retorno.get());
 		
-		return membro;
+		return retorno.get();
 	}
 	
 }

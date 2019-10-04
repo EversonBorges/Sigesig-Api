@@ -39,9 +39,9 @@ public class MinisterioServiceImpl implements CommonService<Ministerio>{
 
 	@Override
 	public Ministerio setDadosAtualizar(Ministerio newMinisterio, Optional<Ministerio> retorno) {
-		Ministerio ministerio= retorno.get();
-		ministerio.setDescMinisterio(newMinisterio.getDescMinisterio());
-		mr.save(ministerio);
-		return ministerio;
+
+		retorno.get().setDescMinisterio(newMinisterio.getDescMinisterio());
+		mr.save(retorno.get());
+		return retorno.get();
 	}
 }

@@ -38,16 +38,15 @@ public class TemploServiceImpl implements CommonService<Templo>{
 
 	@Override
 	public Templo setDadosAtualizar(Templo entity, Optional<Templo> retorno) {
-		Templo templo = retorno.get();
 		
-		templo.setCnpj(entity.getCnpj());
-		templo.setDtAbertura(entity.getDtAbertura());
-		templo.setNomeFantasia(entity.getNomeFantasia());
-		templo.setRazaoSocial(entity.getRazaoSocial());
-		templo.setTipo(entity.getTipo());
+		retorno.get().setCnpj(entity.getCnpj());
+		retorno.get().setDtAbertura(entity.getDtAbertura());
+		retorno.get().setNomeFantasia(entity.getNomeFantasia());
+		retorno.get().setRazaoSocial(entity.getRazaoSocial());
+		retorno.get().setTipo(entity.getTipo());
 		
-		temploRepository.save(templo);
-		return templo;
+		temploRepository.save(retorno.get());
+		return retorno.get();
 	}
 
 }
