@@ -48,7 +48,6 @@ public class MinisterioController {
 	
 	@GetMapping("/{idMinisterio}")
 	public ResponseEntity<Ministerio> buscarId(@PathVariable("idMinisterio")Long idMinisterio) {
-		
 		Optional<Ministerio> retorno = ministerioServiceImpl.buscarId(idMinisterio);
 		
 		return retorno.isPresent() ? new ResponseEntity<Ministerio>(retorno.get(),HttpStatus.OK) :
