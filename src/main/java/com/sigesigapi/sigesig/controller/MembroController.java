@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sigesigapi.sigesig.event.RecursoCriadoEvent;
@@ -57,27 +58,21 @@ public class MembroController {
 	}
 	
 	@PutMapping("/{idMembro}")
-	public ResponseEntity<Membro> atualizar(@PathVariable("idMembro") Long idMembro, @Valid @RequestBody Membro newMembro){
-		Optional<Membro> retorno = membroServiceImpl.buscarId(idMembro);
+	public ResponseEntity<Membro> atualizar(@PathVariable("idMembro") Long idMembro, @Valid @RequestBody Membro membro){
 		
-		if(retorno.isPresent()) {
-			Membro membro = membroServiceImpl.setDadosAtualizar(newMembro, retorno);
-			return new ResponseEntity<Membro>(membro,HttpStatus.OK);
-		}else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+		Membro membroAlterado = membroServiceImpl.setDadosAtualizar(idMembro, membro);
+		return new ResponseEntity<Membro>(membroAlterado,HttpStatus.OK);
+	}
+	
+	@PutMapping("/{idMembro}/tipo")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void atualizarPropriedadeTipo(@PathVariable Long idMembro,@RequestBody Boolean tipo) {
+		membroServiceImpl.atualizarPropriedadeTipo(idMembro,tipo);
 	}
 	
 	@DeleteMapping("/{idMembro}")
-	public ResponseEntity<?> deletar(@PathVariable("idMembro")Long idMembro){
-		
-		Optional<Membro> retorno = membroServiceImpl.buscarId(idMembro);
-		
-		if(retorno.isPresent()) {
-			membroServiceImpl.remover(retorno.get());
-			return new ResponseEntity<>(HttpStatus.OK);
-		}else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deletar(@PathVariable Long idMembro){
+			membroServiceImpl.remover(idMembro);
 	}
 }

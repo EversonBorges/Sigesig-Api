@@ -3,7 +3,9 @@ package com.sigesigapi.sigesig.serviceImpl;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -16,6 +18,9 @@ public class MinisterioServiceImpl implements CommonService<Ministerio>{
 
 	@Autowired
 	private MinisterioRepository mr;
+	
+	@Autowired
+	private MinisterioServiceImpl ministerioServiceImpl;
 	
 	@Override
 	public List<Ministerio> listarTodos() {
@@ -33,15 +38,18 @@ public class MinisterioServiceImpl implements CommonService<Ministerio>{
 	}
 
 	@Override
-	public void remover(Ministerio entity) {
-		mr.delete(entity);
+	public void remover(Long id) {
+		mr.deleteById(id);
 	}
 
 	@Override
-	public Ministerio setDadosAtualizar(Ministerio newMinisterio, Optional<Ministerio> retorno) {
-
-		retorno.get().setDescMinisterio(newMinisterio.getDescMinisterio());
-		mr.save(retorno.get());
-		return retorno.get();
+	public Ministerio setDadosAtualizar(Long idMinisterio, Ministerio ministerio) {
+		
+		Optional<Ministerio> ministerioRetorno = ministerioServiceImpl.buscarId(idMinisterio);
+		if(!ministerioRetorno.isPresent()) {
+			throw new EmptyResultDataAccessException(1);
+		}
+		BeanUtils.copyProperties(ministerio, ministerioRetorno.get(), "idMinisterio");
+		return mr.save(ministerioRetorno.get());
 	}
 }

@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.sigesigapi.sigesig.enums.Status;
 import com.sigesigapi.sigesig.enums.Turmas;
 
 @Entity
@@ -27,9 +26,9 @@ public class EscolaBiblica {
 
 	private Membro professor;
 	private Calendar dtInicio;
-	private Status tipo;
+	private Boolean ativo;
 	private Calendar dtNasc;
-	private Templo templo;
+	//private Templo templo;
 	
 	
 }

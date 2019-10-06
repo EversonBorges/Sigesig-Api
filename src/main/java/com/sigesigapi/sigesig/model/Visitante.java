@@ -8,6 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -33,12 +34,14 @@ public class Visitante {
 	private Sexo sexo;
 	
 	@ManyToOne
+	@JoinColumn(name = "templo")
 	private Templo templo;
 	
 	@Enumerated(EnumType.STRING)
 	private Religiao religiao;
 	
 	@ManyToOne
+	@JoinColumn(name = "respo_convidar")
 	private Membro respoConvidar;
 	
 	@Enumerated(EnumType.STRING)
@@ -50,6 +53,7 @@ public class Visitante {
 	private String parentesco;
 	
 	@ManyToOne
+	@JoinColumn(name = "parente_de_quem")
 	private Membro parenteDeQuem;
 
 	public Long getIdVisitante() {

@@ -3,11 +3,11 @@ package com.sigesigapi.sigesig.serviceImpl;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.sigesigapi.sigesig.model.Membro;
-import com.sigesigapi.sigesig.model.Templo;
 import com.sigesigapi.sigesig.model.Visitante;
 import com.sigesigapi.sigesig.repository.VisitanteRepository;
 import com.sigesigapi.sigesig.service.CommonService;
@@ -19,10 +19,7 @@ public class VisitanteServiceImpl implements CommonService<Visitante> {
 	private VisitanteRepository visitanteRepository;
 	
 	@Autowired
-	private MembroServiceImpl membroServiceImpl;
-	
-	@Autowired
-	private TemploServiceImpl temploServiceImpl;
+	private VisitanteServiceImpl visitanteServiceImpl;
 	
 	@Override
 	public List<Visitante> listarTodos() {
@@ -40,29 +37,19 @@ public class VisitanteServiceImpl implements CommonService<Visitante> {
 	}
 
 	@Override
-	public void remover(Visitante entity) {
-		visitanteRepository.delete(entity);
+	public void remover(Long id) {
+		visitanteRepository.deleteById(id);
 	}
 
 	@Override
-	public Visitante setDadosAtualizar(Visitante entity, Optional<Visitante> retorno) {
+	public Visitante setDadosAtualizar(Long idVisitante, Visitante visitante) {
+		Optional<Visitante> visitanteRetorno = visitanteServiceImpl.buscarId(idVisitante);
 		
-		Optional<Membro> membro = membroServiceImpl.buscarId(entity.getParenteDeQuem().getIdMembro());
-		Optional<Templo> templo = temploServiceImpl.buscarId(entity.getTemplo().getIdTemplo());
-		
-		retorno.get().setDtNasc(entity.getDtNasc());
-		retorno.get().setNomeVisitante(entity.getNomeVisitante());
-		retorno.get().setParente(entity.getParente());
-		retorno.get().setParenteDeQuem(entity.getParenteDeQuem());
-		retorno.get().setParentesco(entity.getParentesco());
-		retorno.get().setReligiao(entity.getReligiao());
-		retorno.get().setRespoConvidar(membro.get());
-		retorno.get().setSexo(entity.getSexo());
-		retorno.get().setTemplo(templo.get());
-		retorno.get().setVisitado(entity.getVisitado());
-		
-		visitanteRepository.save(retorno.get());
-		return retorno.get();
+		if(!visitanteRetorno.isPresent()) {
+			throw new EmptyResultDataAccessException(1);
+		}
+		BeanUtils.copyProperties(visitante, visitanteRetorno.get(), "idVisitante");
+		return visitanteRepository.save(visitanteRetorno.get());
 	}
 
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sigesigapi.sigesig.event.RecursoCriadoEvent;
@@ -55,28 +56,15 @@ public class VisitanteController {
 	}
 	
 	@PutMapping("/{idVisitante}")
-	public ResponseEntity<Visitante> atualizar(@Valid @RequestBody Visitante NewVisitante, 
+	public ResponseEntity<Visitante> atualizar(@Valid @RequestBody Visitante visitante, 
 					@PathVariable("idVisitante") Long idVisitante){
-		Optional<Visitante> retorno = visitanteServiceImpl.buscarId(idVisitante);
-		
-		if(retorno.isPresent()) {
-
-			Visitante visitante = visitanteServiceImpl.setDadosAtualizar(NewVisitante, retorno);
-			return new ResponseEntity<Visitante>(visitante,HttpStatus.OK);
-		}else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+		Visitante visitanteAlterado = visitanteServiceImpl.setDadosAtualizar(idVisitante, visitante);
+		return new ResponseEntity<Visitante>(visitanteAlterado,HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{idVisitante}")
-	public ResponseEntity<?> deletar(@PathVariable("idVisitante") Long idVisitante){
-		Optional<Visitante> retorno = visitanteServiceImpl.buscarId(idVisitante);
-		
-		if(retorno.isPresent()) {
-			visitanteServiceImpl.remover(retorno.get());
-			return new ResponseEntity<>(retorno.get().getNomeVisitante(),HttpStatus.OK);
-		}else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deletar(@PathVariable Long idVisitante){
+		visitanteServiceImpl.remover(idVisitante);
 	}
 }

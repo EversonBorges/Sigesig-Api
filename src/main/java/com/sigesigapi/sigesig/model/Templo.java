@@ -1,19 +1,18 @@
 package com.sigesigapi.sigesig.model;
 
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-
-import com.sigesigapi.sigesig.enums.Status;
 
 @Entity
 @Table(name = "templo")
@@ -35,6 +34,7 @@ public class Templo {
 	@NotNull
 	@Temporal(TemporalType.DATE)
 	private Calendar dtAbertura;
+	
 //	
 //	@ManyToOne
 //	private Membro pastorAuxiliar;
@@ -43,8 +43,7 @@ public class Templo {
 //	private Membro pastorTitular;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private Status tipo;
+	private Boolean ativo;
 	
 	public Long getIdTemplo() {
 		return idTemplo;
@@ -88,11 +87,11 @@ public class Templo {
 //	public void setPastorTitular(Membro pastorTitular) {
 //		this.pastorTitular = pastorTitular;
 //	}
-	public Status getTipo() {
-		return tipo;
+	public Boolean getTipo() {
+		return ativo;
 	}
-	public void setTipo(Status tipo) {
-		this.tipo = tipo;
+	public void setTipo(Boolean tipo) {
+		this.ativo = tipo;
 	}
 	@Override
 	public int hashCode() {

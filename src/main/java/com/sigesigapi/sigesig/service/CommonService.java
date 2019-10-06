@@ -8,6 +8,6 @@ public interface CommonService<T> {
 	List<T> listarTodos();
 	T salvar(T entity);
 	Optional<T> buscarId(Long id);
-	void remover(T entity);
-	T setDadosAtualizar(T entity, Optional<T> retorno);
+	void remover(Long id);
+	T setDadosAtualizar(Long id,T entity);
 }

@@ -5,10 +5,10 @@ CREATE TABLE membro(
 	rg varchar(20) not null,
 	batizado varchar(5) not null,
 	dt_nasc date not null,
-	ministerio_id_ministerio integer not null,
-	tipo varchar(10),
+	ministerio integer not null,
+	ativo boolean,
 	sexo varchar(15),
-	templo_id_templo integer,
+	templo integer,
 	idade integer,
 	turma integer,
 	matricula_escola_biblica boolean,
@@ -26,6 +26,11 @@ CREATE TABLE membro(
 	email varchar(30),
 	whatsaap varchar(3),
 	CONSTRAINT id_membro PRIMARY KEY(id_membro),
-	FOREIGN KEY (ministerio_id_ministerio) REFERENCES ministerio(id_ministerio),
-	FOREIGN KEY (templo_id_templo) REFERENCES templo (id_templo)
+	FOREIGN KEY (ministerio) REFERENCES ministerio(id_ministerio),
+	FOREIGN KEY (templo) REFERENCES templo (id_templo)
 	);
+	
+	insert into membro(nome_membro,cpf,rg,batizado,dt_nasc,ministerio,ativo,sexo,templo,idade,turma,matricula_escola_biblica,capacitacao_concluido,
+						matricula_lider,rua,numero,bairro,cidade,uf,cep,celular,fixo,email,whatsaap)
+	values('Everson Borges','042.843.346-46','MG-10.374.064','Sim','1981-10-18',1,false,'Masculino',1,37,1,true,true,true,'Rua 2',432,'Petropolis','Betim',
+			'MG','32681-405','31 988772043',null,'everson.cursos@gmail.com','Sim');

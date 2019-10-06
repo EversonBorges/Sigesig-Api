@@ -1,6 +1,8 @@
 package com.sigesigapi.sigesig.model;
 
 import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 import com.sigesigapi.sigesig.enums.Opcao;
 
@@ -17,7 +19,10 @@ public class Endereco {
 	private String celular;
 	private String fixo;
 	private String email;
+	
+	@Enumerated(EnumType.STRING)
 	private Opcao whatsaap;
+	
 	public String getRua() {
 		return rua;
 	}

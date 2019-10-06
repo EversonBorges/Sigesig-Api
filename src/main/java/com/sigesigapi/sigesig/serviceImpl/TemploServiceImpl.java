@@ -3,7 +3,9 @@ package com.sigesigapi.sigesig.serviceImpl;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.sigesigapi.sigesig.model.Templo;
@@ -15,6 +17,9 @@ public class TemploServiceImpl implements CommonService<Templo>{
 
 	@Autowired
 	private TemploRepository temploRepository;
+	
+	@Autowired
+	private TemploServiceImpl temploServiceImpl; 
 	
 	@Override
 	public List<Templo> listarTodos() {
@@ -32,21 +37,18 @@ public class TemploServiceImpl implements CommonService<Templo>{
 	}
 
 	@Override
-	public void remover(Templo entity) {
-		temploRepository.delete(entity);
+	public void remover(Long id) {
+		temploRepository.deleteById(id);
 	}
 
 	@Override
-	public Templo setDadosAtualizar(Templo entity, Optional<Templo> retorno) {
+	public Templo setDadosAtualizar(Long idTemplo, Templo templo) {
 		
-		retorno.get().setCnpj(entity.getCnpj());
-		retorno.get().setDtAbertura(entity.getDtAbertura());
-		retorno.get().setNomeFantasia(entity.getNomeFantasia());
-		retorno.get().setRazaoSocial(entity.getRazaoSocial());
-		retorno.get().setTipo(entity.getTipo());
-		
-		temploRepository.save(retorno.get());
-		return retorno.get();
+		Optional<Templo> temploRetorno = temploServiceImpl.buscarId(idTemplo);
+		if(!temploRetorno.isPresent()) {
+			throw new EmptyResultDataAccessException(1);
+		}
+		BeanUtils.copyProperties(templo, temploRetorno.get(), "idTemplo");
+		return temploRepository.save(temploRetorno.get());
 	}
-
 }

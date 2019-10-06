@@ -1,7 +1,7 @@
 package com.sigesigapi.sigesig.model;
 
 import java.io.Serializable;
-import java.util.Calendar;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -11,15 +11,13 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import com.sigesigapi.sigesig.enums.Opcao;
 import com.sigesigapi.sigesig.enums.Sexo;
-import com.sigesigapi.sigesig.enums.Status;
 
 @Entity
 @Table(name = "membro")
@@ -45,21 +43,22 @@ public class Membro implements Serializable{
 	private Opcao batizado;
 	
 	@NotNull
-	@Temporal(TemporalType.DATE)
-	private Calendar dtNasc;
+	@Column(name ="dt_nasc")
+	private LocalDate dtNasc;
 	
 	@ManyToOne
+	@JoinColumn(name = "ministerio")
 	private Ministerio ministerio;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private Status tipo;
+	private Boolean ativo;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Sexo sexo;
 	
 	@ManyToOne
+	@JoinColumn(name = "templo")
 	private Templo templo;
 	
 	@NotNull
@@ -117,12 +116,20 @@ public class Membro implements Serializable{
 		this.batizado = batizado;
 	}
 
-	public Calendar getDtNasc() {
+	public LocalDate getDtNasc() {
 		return dtNasc;
 	}
 
-	public void setDtNasc(Calendar dtNasc) {
+	public void setDtNasc(LocalDate dtNasc) {
 		this.dtNasc = dtNasc;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	public Ministerio getMinisterio() {
@@ -133,12 +140,12 @@ public class Membro implements Serializable{
 		this.ministerio = ministerio;
 	}
 
-	public Status getTipo() {
-		return tipo;
+	public Boolean getTipo() {
+		return ativo;
 	}
 
-	public void setTipo(Status tipo) {
-		this.tipo = tipo;
+	public void setTipo(Boolean tipo) {
+		this.ativo = tipo;
 	}
 
 	public Sexo getSexo() {

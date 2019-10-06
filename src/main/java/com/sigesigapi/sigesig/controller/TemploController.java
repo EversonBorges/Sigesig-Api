@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sigesigapi.sigesig.event.RecursoCriadoEvent;
@@ -55,27 +56,16 @@ public class TemploController {
 	}
 	
 	@PutMapping("/{idTemplo}")
-	public ResponseEntity<Templo> atualizar(@Valid @RequestBody Templo newTemplo, 
+	public ResponseEntity<Templo> atualizar(@Valid @RequestBody Templo templo, 
 									@PathVariable("idTemplo") Long idTemplo){
-		Optional<Templo> retorno = temploServiceImpl.buscarId(idTemplo);
 		
-		if(retorno.isPresent()) {
-			Templo templo = temploServiceImpl.setDadosAtualizar(newTemplo, retorno);
-			return new ResponseEntity<>(templo,HttpStatus.OK);
-		}else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+		Templo temploAtualizado = temploServiceImpl.setDadosAtualizar(idTemplo, templo);
+		return new ResponseEntity<Templo>(temploAtualizado,HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{idTemplo}")
-	public ResponseEntity<?> deletar(@PathVariable("idTemplo")Long idTemplo){
-		Optional<Templo> retorno = temploServiceImpl.buscarId(idTemplo);
-		
-		if(retorno.isPresent()) {
-			temploServiceImpl.remover(retorno.get());
-			return new ResponseEntity<>(HttpStatus.OK);
-		}else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deletar(@PathVariable("idTemplo")Long idTemplo){
+			temploServiceImpl.remover(idTemplo);
 	}
 }

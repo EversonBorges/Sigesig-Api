@@ -3,12 +3,12 @@ package com.sigesigapi.sigesig.serviceImpl;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.sigesigapi.sigesig.model.Membro;
-import com.sigesigapi.sigesig.model.Ministerio;
-import com.sigesigapi.sigesig.model.Templo;
 import com.sigesigapi.sigesig.repository.MembroRepository;
 import com.sigesigapi.sigesig.service.CommonService;
 
@@ -19,12 +19,8 @@ public class MembroServiceImpl implements CommonService<Membro>{
 	private MembroRepository membroRepository;
 	
 	@Autowired
-	private MinisterioServiceImpl ministerioServiceImpl;
+	private  MembroServiceImpl membroServiceImpl;
 	
-	@Autowired
-	private TemploServiceImpl temploServiceImpl;
-	
-	@Override
 	public List<Membro> listarTodos() {
 		return membroRepository.findAll();
 	}
@@ -40,35 +36,30 @@ public class MembroServiceImpl implements CommonService<Membro>{
 	}
 
 	@Override
-	public void remover(Membro entity) {
-		membroRepository.delete(entity);
+	public void remover(Long id) {
+		membroRepository.deleteById(id);
 	}
 
 	@Override
-	public Membro setDadosAtualizar(Membro entity, Optional<Membro> retorno) {
-		Optional<Ministerio> ministerio = ministerioServiceImpl.buscarId(entity.getMinisterio().getIdMinisterio());
-		Optional<Templo> templo = temploServiceImpl.buscarId(entity.getTemplo().getIdTemplo());
+	public Membro setDadosAtualizar(Long idMembro, Membro membro) {
 		
-		retorno.get().setBatizado(entity.getBatizado());
-		retorno.get().setCapacitacaoConcluido(entity.getCapacitacaoConcluido());
-		retorno.get().setCpf(entity.getCpf());
-		retorno.get().setDtNasc(entity.getDtNasc());
-		retorno.get().setEndereco(retorno.get().getEndereco());
-		retorno.get().setIdade(entity.getIdade());
-		retorno.get().setTurma(entity.getTurma());
-		retorno.get().setMatriculaEscolaBiblica(entity.getMatriculaEscolaBiblica());
-		retorno.get().setMatriculaLider(entity.getMatriculaLider());
-		retorno.get().setMinisterio(ministerio.get());
-		retorno.get().setNomeMembro(entity.getNomeMembro());
-		retorno.get().setRg(entity.getRg());
-		retorno.get().setSexo(entity.getSexo());
-		retorno.get().setTemplo(templo.get());
-		retorno.get().setTipo(entity.getTipo());
-		retorno.get().setTurma(entity.getTurma());
-		retorno.get().setEndereco(entity.getEndereco());
-		membroRepository.save(retorno.get());
+		Optional<Membro> membroRetorno = buscarMembro(idMembro);
+		BeanUtils.copyProperties(membro, membroRetorno.get(), "idMembro");
+		return membroRepository.save(membroRetorno.get());
+	}
+
+	public void atualizarPropriedadeTipo(Long idMembro, Boolean tipo) {
 		
-		return retorno.get();
+		Optional<Membro> membroRetorno = buscarMembro(idMembro);
+		membroRetorno.get().setTipo(tipo);
+		membroRepository.save(membroRetorno.get());
 	}
 	
+	private Optional<Membro> buscarMembro(Long idMembro) {
+		Optional<Membro> membroRetorno = membroServiceImpl.buscarId(idMembro);
+		if(!membroRetorno.isPresent()) {
+			throw new EmptyResultDataAccessException(1);
+		}
+		return membroRetorno;
+	}
 }

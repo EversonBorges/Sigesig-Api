@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sigesigapi.sigesig.event.RecursoCriadoEvent;
@@ -55,28 +56,16 @@ public class MinisterioController {
 	}
 	
 	@PutMapping("/{idMinisterio}")
-	public ResponseEntity<Ministerio> atualizar(@Valid @RequestBody Ministerio newMinisterio, 
-			@PathVariable("idMinisterio") Long idMinisterio){
+	public ResponseEntity<Ministerio> atualizar(@Valid @RequestBody Ministerio ministerio, 
+			@PathVariable Long idMinisterio){
 		
-		Optional<Ministerio> retorno = ministerioServiceImpl.buscarId(idMinisterio);
-		
-		if(retorno.isPresent()) {
-			Ministerio ministerio = ministerioServiceImpl.setDadosAtualizar(newMinisterio, retorno);
-			return new ResponseEntity<Ministerio>(ministerio,HttpStatus.OK);
-		}else{
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+		Ministerio ministerioAlterado = ministerioServiceImpl.setDadosAtualizar(idMinisterio, ministerio);
+		return new ResponseEntity<Ministerio>(ministerioAlterado,HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{idMinisterio}")
-	public ResponseEntity<?> deletar(@PathVariable("idMinisterio") Long idMinisterio) {
-		
-		Optional<Ministerio> retorno = ministerioServiceImpl.buscarId(idMinisterio);
-	        if(retorno.isPresent()){
-	        	ministerioServiceImpl.remover(retorno.get());
-	            return new ResponseEntity<>(HttpStatus.OK);
-	        }
-	        else
-	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	    }
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deletar(@PathVariable Long idMinisterio) {
+		ministerioServiceImpl.remover(idMinisterio);     
+	 }
 }
