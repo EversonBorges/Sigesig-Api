@@ -1,0 +1,90 @@
+package com.sigesigapi.sigesig.model;
+
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name = "chamada_capacitacao_destino")
+public class ChamadaCapacitacaoDestino {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idChamadaCapacitacaoDestino;
+	
+	@OneToMany
+	@JoinColumn(name = "aluno_capacitacao_destino")
+	private List<AlunosCapacitacaoDestino> alunoCapacitacaoDestino;
+	
+	@OneToOne
+	@JoinColumn(name = "aula_modulo")
+	private AulaModulo aulaModulo;
+	
+	@NotNull
+	private Boolean presenca;
+
+	public Long getIdChamadaCapacitacaoDestino() {
+		return idChamadaCapacitacaoDestino;
+	}
+
+	public void setIdChamadaCapacitacaoDestino(Long idChamadaCapacitacaoDestino) {
+		this.idChamadaCapacitacaoDestino = idChamadaCapacitacaoDestino;
+	}
+
+	public List<AlunosCapacitacaoDestino> getAlunoCapacitacaoDestino() {
+		return alunoCapacitacaoDestino;
+	}
+
+	public void setAlunoCapacitacaoDestino(List<AlunosCapacitacaoDestino> alunoCapacitacaoDestino) {
+		this.alunoCapacitacaoDestino = alunoCapacitacaoDestino;
+	}
+
+	public AulaModulo getAulaModulo() {
+		return aulaModulo;
+	}
+
+	public void setAulaModulo(AulaModulo aulaModulo) {
+		this.aulaModulo = aulaModulo;
+	}
+
+	public Boolean getPresenca() {
+		return presenca;
+	}
+
+	public void setPresenca(Boolean presenca) {
+		this.presenca = presenca;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((idChamadaCapacitacaoDestino == null) ? 0 : idChamadaCapacitacaoDestino.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ChamadaCapacitacaoDestino other = (ChamadaCapacitacaoDestino) obj;
+		if (idChamadaCapacitacaoDestino == null) {
+			if (other.idChamadaCapacitacaoDestino != null)
+				return false;
+		} else if (!idChamadaCapacitacaoDestino.equals(other.idChamadaCapacitacaoDestino))
+			return false;
+		return true;
+	}
+}
