@@ -64,10 +64,11 @@ public class MembroController {
 		return new ResponseEntity<Membro>(membroAlterado,HttpStatus.OK);
 	}
 	
-	@PutMapping("/{idMembro}/tipo")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void atualizarPropriedadeTipo(@PathVariable Long idMembro,@RequestBody Boolean tipo) {
-		membroServiceImpl.atualizarPropriedadeTipo(idMembro,tipo);
+	@PutMapping("/{idMembro}/ativo")
+	public ResponseEntity<Membro> atualizarStatus(@PathVariable Long idMembro,@RequestBody Boolean tipo) {
+		
+		Membro membroRetorno =  membroServiceImpl.atualizarStatus(idMembro,tipo);
+		return new ResponseEntity<Membro>(membroRetorno,HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{idMembro}")

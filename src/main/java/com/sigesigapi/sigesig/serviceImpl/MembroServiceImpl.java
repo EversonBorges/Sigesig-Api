@@ -48,11 +48,11 @@ public class MembroServiceImpl implements CommonService<Membro>{
 		return membroRepository.save(membroRetorno.get());
 	}
 
-	public void atualizarPropriedadeTipo(Long idMembro, Boolean tipo) {
+	public Membro atualizarStatus(Long idMembro, Boolean tipo) {
 		
 		Optional<Membro> membroRetorno = buscarMembro(idMembro);
-		membroRetorno.get().setTipo(tipo);
-		membroRepository.save(membroRetorno.get());
+		membroRetorno.get().setAtivo(tipo);
+		return membroRepository.save(membroRetorno.get());
 	}
 	
 	private Optional<Membro> buscarMembro(Long idMembro) {

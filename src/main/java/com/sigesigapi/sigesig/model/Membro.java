@@ -140,14 +140,6 @@ public class Membro implements Serializable{
 		this.ministerio = ministerio;
 	}
 
-	public Boolean getTipo() {
-		return ativo;
-	}
-
-	public void setTipo(Boolean tipo) {
-		this.ativo = tipo;
-	}
-
 	public Sexo getSexo() {
 		return sexo;
 	}
