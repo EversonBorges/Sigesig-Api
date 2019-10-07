@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "alunos_capacitacao_destino")
-public class AlunosCapacitacaoDestino {
+public class AlunoCapacitacaoDestino {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -91,7 +91,7 @@ public class AlunosCapacitacaoDestino {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AlunosCapacitacaoDestino other = (AlunosCapacitacaoDestino) obj;
+		AlunoCapacitacaoDestino other = (AlunoCapacitacaoDestino) obj;
 		if (idAlunoCapacitacaoDestino == null) {
 			if (other.idAlunoCapacitacaoDestino != null)
 				return false;
