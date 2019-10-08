@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -25,9 +26,6 @@ public class Celula {
 	
 	@Column(name = "dt_abertura")
 	private LocalDate dtAbertura;
-	
-	@NotNull
-	private String celularLider;
 	
 	@OneToOne
 	@JoinColumn(name = "lider_celula")
@@ -48,7 +46,12 @@ public class Celula {
 	@JoinColumn(name = "supervisor_celula_area")
 	private Membro supervisorCelulaArea;
 	
+	@ManyToOne
+	@JoinColumn(name = "templo")
+	private Templo templo;
+	
 	@NotNull
+	@Column(name = "qtd_participante")
 	private Integer qtdParticipantes;
 	
 	@NotNull
@@ -76,14 +79,6 @@ public class Celula {
 
 	public void setDtAbertura(LocalDate dtAbertura) {
 		this.dtAbertura = dtAbertura;
-	}
-
-	public String getCelularLider() {
-		return celularLider;
-	}
-
-	public void setCelularLider(String celularLider) {
-		this.celularLider = celularLider;
 	}
 
 	public Membro getLiderCelula() {
@@ -124,6 +119,14 @@ public class Celula {
 
 	public void setSupervisorCelulaArea(Membro supervisorCelulaArea) {
 		this.supervisorCelulaArea = supervisorCelulaArea;
+	}
+
+	public Templo getTemplo() {
+		return templo;
+	}
+
+	public void setTemplo(Templo templo) {
+		this.templo = templo;
 	}
 
 	public Integer getQtdParticipantes() {

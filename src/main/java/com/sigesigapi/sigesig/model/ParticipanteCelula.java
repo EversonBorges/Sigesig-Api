@@ -32,9 +32,9 @@ public class ParticipanteCelula {
 	@Enumerated(EnumType.STRING)
 	private Religiao religiaoParticipante;
 	
-	@ManyToOne
-	@Column(name = "celula")
-	private Celula celula;
+	//@ManyToOne
+	//@Column(name = "celula")
+	//private Celula celula;
 
 	public Long getIdParticipante() {
 		return idParticipante;
@@ -68,13 +68,11 @@ public class ParticipanteCelula {
 		this.religiaoParticipante = religiaoParticipante;
 	}
 
-	public Celula getCelula() {
-		return celula;
-	}
-
-	public void setCelula(Celula celula) {
-		this.celula = celula;
-	}
+	/*
+	 * public Celula getCelula() { return celula; }
+	 * 
+	 * public void setCelula(Celula celula) { this.celula = celula; }
+	 */
 
 	@Override
 	public int hashCode() {
