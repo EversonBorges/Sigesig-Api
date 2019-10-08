@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -32,9 +33,9 @@ public class ParticipanteCelula {
 	@Enumerated(EnumType.STRING)
 	private Religiao religiaoParticipante;
 	
-	//@ManyToOne
-	//@Column(name = "celula")
-	//private Celula celula;
+	@ManyToOne
+	@JoinColumn(name = "celula")
+	private Celula celula;
 
 	public Long getIdParticipante() {
 		return idParticipante;
@@ -68,11 +69,13 @@ public class ParticipanteCelula {
 		this.religiaoParticipante = religiaoParticipante;
 	}
 
-	/*
-	 * public Celula getCelula() { return celula; }
-	 * 
-	 * public void setCelula(Celula celula) { this.celula = celula; }
-	 */
+	public Celula getCelula() {
+		return celula;
+	}
+
+	public void setCelula(Celula celula) {
+		this.celula = celula;
+	}
 
 	@Override
 	public int hashCode() {
