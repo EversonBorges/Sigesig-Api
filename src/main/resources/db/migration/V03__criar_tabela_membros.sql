@@ -32,5 +32,5 @@ CREATE TABLE membro(
 	
 	insert into membro(nome_membro,cpf,rg,batizado,dt_nasc,ministerio,ativo,sexo,templo,idade,turma,matricula_escola_biblica,capacitacao_concluido,
 						matricula_lider,rua,numero,bairro,cidade,uf,cep,celular,fixo,email,whatsaap)
-	values('Everson Borges','042.843.346-46','MG-10.374.064','Sim','1981-10-18',1,false,'Masculino',1,37,'Adulto',true,true,true,'Rua 2',432,'Petropolis','Betim',
+	values('Everson Borges','042.843.346-46','MG-10.374.064','Sim','1981-10-18',1,false,'Masculino',1,37,'Adultos',true,true,true,'Rua 2',432,'Petropolis','Betim',
 			'MG','32681-405','31 988772043',null,'everson.cursos@gmail.com','Sim');
