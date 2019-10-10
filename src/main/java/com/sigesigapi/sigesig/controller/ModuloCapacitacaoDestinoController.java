@@ -44,7 +44,7 @@ public class ModuloCapacitacaoDestinoController {
 							HttpServletResponse response){
 		
 		ModuloCapacitacaoDestino moduloSalvo = serviceImpl.salvar(capacitacaoDestino);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, moduloSalvo.getIdModulo()));
+		publisher.publishEvent(new RecursoCriadoEvent(this, response, moduloSalvo.getIdModuloCapacitacaoDestino()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(moduloSalvo);
 	}
 	

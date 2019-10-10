@@ -64,8 +64,8 @@ public class AulaModuloController {
 	
 	@DeleteMapping("/{idAulaModulo}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deletar(@PathVariable Long idModuloAula) {
-		serviceImpl.remover(idModuloAula);
+	public void deletar(@PathVariable Long idAulaModulo) {
+		serviceImpl.remover(idAulaModulo);
 	}
 }
 

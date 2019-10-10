@@ -34,7 +34,7 @@ public class TurmaCapacitacaoDestino {
 	private Boolean ativo;
 	
 	@NotNull
-	private String descTurmaCapacitacaodestino;
+	private String descTurmaCapacitacaoDestino;
 
 	public Long getIdTurmaCapacitacaoDestino() {
 		return idTurmaCapacitacaoDestino;
@@ -76,12 +76,12 @@ public class TurmaCapacitacaoDestino {
 		this.ativo = ativo;
 	}
 
-	public String getDescTurmaCapacitacaodestino() {
-		return descTurmaCapacitacaodestino;
+	public String getDescTurmaCapacitacaoDestino() {
+		return descTurmaCapacitacaoDestino;
 	}
 
-	public void setDescTurmaCapacitacaodestino(String descTurmaCapacitacaodestino) {
-		this.descTurmaCapacitacaodestino = descTurmaCapacitacaodestino;
+	public void setDescTurmaCapacitacaoDestino(String descTurmaCapacitacaoDestino) {
+		this.descTurmaCapacitacaoDestino = descTurmaCapacitacaoDestino;
 	}
 
 	@Override

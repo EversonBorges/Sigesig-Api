@@ -55,15 +55,15 @@ public class EntradasController {
 	}
 	
 	@PutMapping("/{idEntrada}")
-	public ResponseEntity<Entradas> atualizar(@Valid @RequestBody Entradas entradas, @PathVariable Long idEntradas){
+	public ResponseEntity<Entradas> atualizar(@Valid @RequestBody Entradas entradas, @PathVariable Long idEntrada){
 		
-		Entradas entradaAlterada = entradaServiceImpl.setDadosAtualizar(idEntradas, entradas);
+		Entradas entradaAlterada = entradaServiceImpl.setDadosAtualizar(idEntrada, entradas);
 		return new ResponseEntity<Entradas>(entradaAlterada,HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{idEntrada}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deletar(@PathVariable Long idEntradas) {
-		entradaServiceImpl.remover(idEntradas);
+	public void deletar(@PathVariable Long idEntrada) {
+		entradaServiceImpl.remover(idEntrada);
 	}
 }

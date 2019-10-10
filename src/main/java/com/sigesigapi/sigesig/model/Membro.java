@@ -18,6 +18,7 @@ import javax.validation.constraints.NotNull;
 
 import com.sigesigapi.sigesig.enums.Opcao;
 import com.sigesigapi.sigesig.enums.Sexo;
+import com.sigesigapi.sigesig.enums.Turmas;
 
 @Entity
 @Table(name = "membro")
@@ -64,8 +65,8 @@ public class Membro implements Serializable{
 	@NotNull
 	private int idade;
 	
-	@NotNull
-	private Integer turma;
+	@Enumerated(EnumType.STRING)
+	private Turmas turma;
 	
 	private Boolean matriculaEscolaBiblica;
 	
@@ -164,11 +165,11 @@ public class Membro implements Serializable{
 		this.idade = idade;
 	}
 
-	public Integer getTurma() {
+	public Turmas getTurma() {
 		return turma;
 	}
 
-	public void setTurma(Integer turma) {
+	public void setTurma(Turmas turma) {
 		this.turma = turma;
 	}
 

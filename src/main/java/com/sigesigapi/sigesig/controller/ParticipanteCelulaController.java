@@ -53,7 +53,8 @@ public class ParticipanteCelulaController {
 	public ResponseEntity<ParticipanteCelula> buscarId(@PathVariable Long idParticipante){
 		
 		Optional<ParticipanteCelula> retorno  = serviceImpl.buscarId(idParticipante);
-		return ResponseEntity.status(HttpStatus.OK).body(retorno.get());
+		return retorno.isPresent() ? ResponseEntity.status(HttpStatus.OK).body(retorno.get()):
+							ResponseEntity.notFound().build();
 	}
 	
 	@PutMapping("/{idParticipante}")
@@ -66,8 +67,8 @@ public class ParticipanteCelulaController {
 	
 	@DeleteMapping("/{idParticipante}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deletar(@PathVariable Long idVisitante) {
+	public void deletar(@PathVariable Long idParticipante) {
 		
-		serviceImpl.remover(idVisitante);
+		serviceImpl.remover(idParticipante);
 	}
 }

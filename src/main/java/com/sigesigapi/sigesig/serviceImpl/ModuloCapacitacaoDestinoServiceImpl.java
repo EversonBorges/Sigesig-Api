@@ -45,7 +45,7 @@ public class ModuloCapacitacaoDestinoServiceImpl implements CommonService<Modulo
 		if(!retorno.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
-		BeanUtils.copyProperties(entity, retorno.get(), "idModulo");
+		BeanUtils.copyProperties(entity, retorno.get(), "idModuloCapacitacaoDestino");
 		return moduloCapacitacaoDestinoRepository.save(retorno.get());
 	}
 

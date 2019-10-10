@@ -34,6 +34,8 @@ public class AlunoEscolaBiblica {
 	@NotNull
 	@Column(name = "dt_inicio")
 	private LocalDate dtInicio;
+	
+	private Boolean ativo;
 
 	public Long getIdAlunoEscolaBiblica() {
 		return idAlunoEscolaBiblica;
@@ -65,6 +67,14 @@ public class AlunoEscolaBiblica {
 
 	public void setDtInicio(LocalDate dtInicio) {
 		this.dtInicio = dtInicio;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	@Override

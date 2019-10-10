@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.sigesigapi.sigesig.enums.Turmas;
 import com.sigesigapi.sigesig.model.Membro;
 import com.sigesigapi.sigesig.repository.MembroRepository;
 import com.sigesigapi.sigesig.service.CommonService;
@@ -26,8 +27,21 @@ public class MembroServiceImpl implements CommonService<Membro>{
 	}
 
 	@Override
-	public Membro salvar(Membro entity) {
-		return membroRepository.save(entity);
+	public Membro salvar(Membro membro) {
+		
+		if (membro.getIdade() <=7 ) {
+			membro.setTurma(Turmas.Crianças);
+			
+		}else if(membro.getIdade() >7 && membro.getIdade() <=15   ) {
+			membro.setTurma(Turmas.Adolescentes);
+		}
+		else if(membro.getIdade() >15 && membro.getIdade() <=25   ) {
+			membro.setTurma(Turmas.Jovens);
+		}else {
+			membro.setTurma(Turmas.Adultos);
+		}
+		
+		return membroRepository.save(membro);
 	}
 
 	@Override

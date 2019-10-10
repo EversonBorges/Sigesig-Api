@@ -65,7 +65,7 @@ public class TurmaCapacitacaoDestinoController {
 		return ResponseEntity.ok().body(turmaAlterada);
 	}
 	
-	@DeleteMapping("/{idTurma")
+	@DeleteMapping("/{idTurma}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long idTurma) {
 		serviceImpl.remover(idTurma);

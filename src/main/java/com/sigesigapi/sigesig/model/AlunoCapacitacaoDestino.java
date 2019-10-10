@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "alunos_capacitacao_destino")
+@Table(name = "aluno_capacitacao_destino")
 public class AlunoCapacitacaoDestino {
 
 	@Id
