@@ -49,7 +49,7 @@ public class TurmaCapacitacaoDestinoController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(turmaSalva);
 	}
 	
-	@GetMapping("/idTurma")
+	@GetMapping("/{idTurma}")
 	public ResponseEntity<TurmaCapacitacaoDestino> buscarId(@PathVariable Long idTurma){
 		
 		Optional<TurmaCapacitacaoDestino> retorno = serviceImpl.buscarId(idTurma);

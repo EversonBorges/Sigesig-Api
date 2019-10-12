@@ -4,17 +4,14 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.sigesigapi.sigesig.enums.AulaEnum;
 
 @Entity
 @Table(name = "aula_modulo")
@@ -24,19 +21,20 @@ public class AulaModulo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idAulaModulo;
 	
-	@Enumerated(EnumType.STRING)
-	private AulaEnum descAula;
+	@ManyToOne
+	@JoinColumn(name =  "modulo")
+	private Modulo modulo;
 	
-	@Column(name = "dt_aula")
-	private LocalDate dtAula;
+	@ManyToOne
+	@JoinColumn(name = "aula_modulo")
+	private Aula aulaModulo;
 	
 	@OneToOne
 	@JoinColumn(name = "professor_aula")
 	private Membro professorAula;
 	
-	@ManyToOne
-	@JoinColumn(name = "modulo_aula")
-	private ModuloCapacitacaoDestino moduloAula;
+	@Column(name = "dt_aula")
+	private LocalDate dtAula;
 
 	public Long getIdAulaModulo() {
 		return idAulaModulo;
@@ -44,14 +42,6 @@ public class AulaModulo {
 
 	public void setIdAulaModulo(Long idAulaModulo) {
 		this.idAulaModulo = idAulaModulo;
-	}
-
-	public AulaEnum getDescAula() {
-		return descAula;
-	}
-
-	public void setDescAula(AulaEnum descAula) {
-		this.descAula = descAula;
 	}
 
 	public LocalDate getDtAula() {
@@ -62,20 +52,28 @@ public class AulaModulo {
 		this.dtAula = dtAula;
 	}
 
+	public Modulo getModulo() {
+		return modulo;
+	}
+
+	public void setModulo(Modulo modulo) {
+		this.modulo = modulo;
+	}
+
+	public Aula getAulaModulo() {
+		return aulaModulo;
+	}
+
+	public void setAulaModulo(Aula aulaModulo) {
+		this.aulaModulo = aulaModulo;
+	}
+
 	public Membro getProfessorAula() {
 		return professorAula;
 	}
 
 	public void setProfessorAula(Membro professorAula) {
 		this.professorAula = professorAula;
-	}
-
-	public ModuloCapacitacaoDestino getModuloAula() {
-		return moduloAula;
-	}
-
-	public void setModuloAula(ModuloCapacitacaoDestino moduloAula) {
-		this.moduloAula = moduloAula;
 	}
 
 	@Override

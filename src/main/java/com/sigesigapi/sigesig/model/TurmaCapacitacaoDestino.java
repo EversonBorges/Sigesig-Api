@@ -1,19 +1,26 @@
 package com.sigesigapi.sigesig.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "turma_capacitacao_destino")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TurmaCapacitacaoDestino {
 
 	@Id
@@ -32,6 +39,12 @@ public class TurmaCapacitacaoDestino {
 	
 	@NotNull
 	private Boolean ativo;
+	
+	@ManyToMany(cascade = {CascadeType.DETACH})
+	@JoinTable(name="turma_modulo", joinColumns=
+		{@JoinColumn(name="id_turma")}, inverseJoinColumns=
+			{@JoinColumn(name="id_modulo")})
+	private List<Modulo> modulo;
 	
 	@NotNull
 	private String descTurmaCapacitacaoDestino;
@@ -82,6 +95,14 @@ public class TurmaCapacitacaoDestino {
 
 	public void setDescTurmaCapacitacaoDestino(String descTurmaCapacitacaoDestino) {
 		this.descTurmaCapacitacaoDestino = descTurmaCapacitacaoDestino;
+	}
+
+	public List<Modulo> getModulo() {
+		return modulo;
+	}
+
+	public void setModulo(List<Modulo> modulo) {
+		this.modulo = modulo;
 	}
 
 	@Override

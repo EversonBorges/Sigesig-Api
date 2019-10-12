@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -30,10 +29,6 @@ public class ModuloCapacitacaoDestino {
 	@JoinColumn(name = "turma_capacitacao_destino")
 	private TurmaCapacitacaoDestino turmaCapacitacaoDestino;
 	
-	@OneToOne
-	@JoinColumn(name = "modulo")
-	private Modulo modulo;
-
 	public Long getIdModuloCapacitacaoDestino() {
 		return idModuloCapacitacaoDestino;
 	}
@@ -64,14 +59,6 @@ public class ModuloCapacitacaoDestino {
 
 	public void setTurmaCapacitacaoDestino(TurmaCapacitacaoDestino turmaCapacitacaoDestino) {
 		this.turmaCapacitacaoDestino = turmaCapacitacaoDestino;
-	}
-
-	public Modulo getModulo() {
-		return modulo;
-	}
-
-	public void setModulo(Modulo modulo) {
-		this.modulo = modulo;
 	}
 
 	@Override

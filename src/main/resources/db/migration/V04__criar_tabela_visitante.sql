@@ -18,5 +18,5 @@ CREATE TABLE visitante(
 	);
 	
 	INSERT INTO visitante(nome_visitante,dt_nasc,sexo,templo,religiao,respo_convidar,visitado,parente,parentesco,parente_de_quem) 
-	VALUES ('Marcio Vargas','1987-12-25','Masculino',1,'Católico',1,'Não','Sim','Irmão',1)
+	VALUES ('Marcio Vargas','1987-12-25','Masculino',1,'Nenhuma',1,'Não','Sim','Irmão',1)
 	

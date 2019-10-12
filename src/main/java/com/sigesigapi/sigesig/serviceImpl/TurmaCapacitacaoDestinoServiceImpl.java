@@ -1,5 +1,6 @@
 package com.sigesigapi.sigesig.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.sigesigapi.sigesig.model.Modulo;
 import com.sigesigapi.sigesig.model.TurmaCapacitacaoDestino;
 import com.sigesigapi.sigesig.repository.TurmaCapacitacaoDestinoRepository;
 import com.sigesigapi.sigesig.service.CommonService;
@@ -25,6 +27,7 @@ public class TurmaCapacitacaoDestinoServiceImpl implements CommonService<TurmaCa
 
 	@Override
 	public TurmaCapacitacaoDestino salvar(TurmaCapacitacaoDestino entity) {
+	
 		return turmaRepository.save(entity);
 	}
 

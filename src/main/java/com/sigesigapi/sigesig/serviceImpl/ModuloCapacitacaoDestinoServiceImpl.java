@@ -25,7 +25,15 @@ public class ModuloCapacitacaoDestinoServiceImpl implements CommonService<Modulo
 
 	@Override
 	public ModuloCapacitacaoDestino salvar(ModuloCapacitacaoDestino entity) {
-		return moduloCapacitacaoDestinoRepository.save(entity);
+		
+	//	for (Modulo list : entity.getModulo()) {
+		//	List<Modulo> listaModulo = new ArrayList<>();
+			//listaModulo.add(list);
+			//entity.setModulo(listaModulo);
+			 //moduloCapacitacaoDestinoRepository.save(entity);
+		//}
+		
+		return  moduloCapacitacaoDestinoRepository.save(entity);
 	}
 
 	@Override
