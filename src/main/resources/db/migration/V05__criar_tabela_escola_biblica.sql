@@ -12,5 +12,11 @@ CREATE TABLE escola_biblica(
 	);
 	
 	INSERT INTO escola_biblica(turma,professor,dt_inicio,templo,ativo) 
-	VALUES ('Adultos',1,'2018-05-21',1,true)
+	VALUES ('Adultos',1,'2018-05-21',1,true);
+	
+	INSERT INTO escola_biblica(turma,professor,dt_inicio,templo,ativo) 
+	VALUES ('Jovens',1,'2018-05-21',1,true);
+	
+	INSERT INTO escola_biblica(turma,professor,dt_inicio,templo,ativo) 
+	VALUES ('Adolescentes',1,'2018-05-21',1,true);
 	

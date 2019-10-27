@@ -5,5 +5,11 @@ CREATE TABLE modulo(
 	);
 	
 	INSERT INTO modulo(desc_modulo) 
-	VALUES ('Modulo 1')
+	VALUES ('Modulo 1');
+	
+	INSERT INTO modulo(desc_modulo) 
+	VALUES ('Modulo 2');
+	
+	INSERT INTO modulo(desc_modulo) 
+	VALUES ('Modulo 3');
 	

@@ -21,8 +21,8 @@ public class ChamadaCapacitacaoDestino {
 	private Long idChamadaCapacitacaoDestino;
 	
 	@OneToMany
-	@JoinColumn(name = "aluno_capacitacao_destino")
-	private List<AlunoCapacitacaoDestino> alunoCapacitacaoDestino;
+	@JoinColumn(name = "aluno")
+	private List<Membro> aluno;
 	
 	@OneToOne
 	@JoinColumn(name = "aula_modulo")
@@ -38,13 +38,13 @@ public class ChamadaCapacitacaoDestino {
 	public void setIdChamadaCapacitacaoDestino(Long idChamadaCapacitacaoDestino) {
 		this.idChamadaCapacitacaoDestino = idChamadaCapacitacaoDestino;
 	}
-
-	public List<AlunoCapacitacaoDestino> getAlunoCapacitacaoDestino() {
-		return alunoCapacitacaoDestino;
+	
+	public List<Membro> getAluno() {
+		return aluno;
 	}
 
-	public void setAlunoCapacitacaoDestino(List<AlunoCapacitacaoDestino> alunoCapacitacaoDestino) {
-		this.alunoCapacitacaoDestino = alunoCapacitacaoDestino;
+	public void setAluno(List<Membro> aluno) {
+		this.aluno = aluno;
 	}
 
 	public AulaModulo getAulaModulo() {

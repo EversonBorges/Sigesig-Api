@@ -11,5 +11,11 @@ CREATE TABLE aluno_escola_biblica(
 	);
 	
 	INSERT INTO aluno_escola_biblica(aluno_escola_biblica,escola_biblica,dt_inicio,ativo) 
-	VALUES (1,1,'2018-05-21',true)
+	VALUES (1,3,'2018-05-21',true);
+	
+	INSERT INTO aluno_escola_biblica(aluno_escola_biblica,escola_biblica,dt_inicio,ativo) 
+	VALUES (2,2,'2018-05-21',true);
+	
+	INSERT INTO aluno_escola_biblica(aluno_escola_biblica,escola_biblica,dt_inicio,ativo) 
+	VALUES (3,1,'2018-05-21',true);
 	

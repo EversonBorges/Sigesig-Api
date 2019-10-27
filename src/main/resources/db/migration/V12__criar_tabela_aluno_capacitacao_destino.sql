@@ -11,4 +11,10 @@ CREATE TABLE aluno_capacitacao_destino(
 	);
 	
 	INSERT INTO aluno_capacitacao_destino(aluno_capacitacao_destino,modulo_capacitacao_destino,dt_matricula,frequencia) 
-	VALUES (1,1,'2018-12-21',1.5)
+	VALUES (1,1,'2018-12-21',1.5);
+	
+	INSERT INTO aluno_capacitacao_destino(aluno_capacitacao_destino,modulo_capacitacao_destino,dt_matricula,frequencia) 
+	VALUES (2,3,'2018-12-21',1.5);
+	
+	INSERT INTO aluno_capacitacao_destino(aluno_capacitacao_destino,modulo_capacitacao_destino,dt_matricula,frequencia) 
+	VALUES (3,1,'2018-12-21',1.5);

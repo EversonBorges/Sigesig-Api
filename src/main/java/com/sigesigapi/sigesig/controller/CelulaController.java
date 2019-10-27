@@ -1,6 +1,5 @@
 package com.sigesigapi.sigesig.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -8,6 +7,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,8 +36,8 @@ public class CelulaController {
 	private ApplicationEventPublisher publisher;
 	
 	@GetMapping
-	public List<Celula> listar(){
-		return celulaServiceImpl.listarTodos();
+	public Page<Celula> listar(Pageable pageable){
+		return celulaServiceImpl.listarTodos(pageable);
 	}
 	
 	@PostMapping

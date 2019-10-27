@@ -1,11 +1,12 @@
 package com.sigesigapi.sigesig.serviceImpl;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.sigesigapi.sigesig.model.Modulo;
@@ -19,8 +20,8 @@ public class ModuloServiceImpl implements CommonService<Modulo>{
 	private ModuloRepository moduloRepository;
 	
 	@Override
-	public List<Modulo> listarTodos() {
-		return moduloRepository.findAll();
+	public Page<Modulo> listarTodos(Pageable pageable) {
+		return moduloRepository.findAll(pageable);
 	}
 
 	@Override

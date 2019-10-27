@@ -1,11 +1,12 @@
 package com.sigesigapi.sigesig.serviceImpl;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.sigesigapi.sigesig.model.Templo;
@@ -22,8 +23,8 @@ public class TemploServiceImpl implements CommonService<Templo>{
 	private TemploServiceImpl temploServiceImpl; 
 	
 	@Override
-	public List<Templo> listarTodos() {
-		return temploRepository.findAll();
+	public Page<Templo> listarTodos(Pageable pageable) {
+		return temploRepository.findAll(pageable);
 	}
 
 	@Override

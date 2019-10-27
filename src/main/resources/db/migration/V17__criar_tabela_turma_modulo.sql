@@ -7,4 +7,10 @@ CREATE TABLE turma_modulo(
 	);
 	
 	INSERT INTO turma_modulo(id_turma,id_modulo)
-	VALUES (1,1) 
+	VALUES (1,1);
+	
+	INSERT INTO turma_modulo(id_turma,id_modulo)
+	VALUES (2,2);
+	
+	INSERT INTO turma_modulo(id_turma,id_modulo)
+	VALUES (3,1); 

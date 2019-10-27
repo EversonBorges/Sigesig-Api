@@ -12,4 +12,13 @@ CREATE TABLE aula_modulo(
 	);
 	
 	INSERT INTO aula_modulo(modulo,dt_aula,professor_aula,aula_modulo) 
-	VALUES (1,'2019-05-12',1,1)
+	VALUES (1,'2019-05-12',1,1);
+	
+	INSERT INTO aula_modulo(modulo,dt_aula,professor_aula,aula_modulo) 
+	VALUES (2,'2019-05-12',1,3);
+	
+	INSERT INTO aula_modulo(modulo,dt_aula,professor_aula,aula_modulo) 
+	VALUES (1,'2019-05-12',1,1);
+	
+	INSERT INTO aula_modulo(modulo,dt_aula,professor_aula,aula_modulo) 
+	VALUES (2,'2019-05-12',1,2);

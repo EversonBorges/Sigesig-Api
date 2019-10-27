@@ -1,6 +1,5 @@
 package com.sigesigapi.sigesig.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -8,6 +7,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,6 +29,8 @@ import com.sigesigapi.sigesig.serviceImpl.ModuloCapacitacaoDestinoServiceImpl;
 @RequestMapping("/modulo_capacitacao_destino")
 public class ModuloCapacitacaoDestinoController {
 
+	//Verificar exclusao
+	
 	@Autowired
 	private ModuloCapacitacaoDestinoServiceImpl serviceImpl;
 	
@@ -35,8 +38,8 @@ public class ModuloCapacitacaoDestinoController {
 	private ApplicationEventPublisher publisher;
 	
 	@GetMapping
-	public List<ModuloCapacitacaoDestino> listar(){
-		return serviceImpl.listarTodos();
+	public Page<ModuloCapacitacaoDestino> listar(Pageable pageable){
+		return serviceImpl.listarTodos(pageable);
 	}
 	
 	@PostMapping

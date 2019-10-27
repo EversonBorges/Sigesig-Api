@@ -11,5 +11,11 @@ CREATE TABLE turma_capacitacao_destino(
 	);
 	
 	INSERT INTO turma_capacitacao_destino(templo,dt_inicio,dt_termino,ativo,desc_turma_capacitacao_destino) 
-	VALUES (1,'2018-05-21','2018-12-21',true,'2019/1')
+	VALUES (1,'2018-05-21','2018-12-21',true,'2019/1');
+	
+	INSERT INTO turma_capacitacao_destino(templo,dt_inicio,dt_termino,ativo,desc_turma_capacitacao_destino) 
+	VALUES (2,'2018-05-21','2018-12-21',true,'2019/2');
+	
+	INSERT INTO turma_capacitacao_destino(templo,dt_inicio,dt_termino,ativo,desc_turma_capacitacao_destino) 
+	VALUES (3,'2018-05-21','2018-12-21',true,'2020/1');
 	

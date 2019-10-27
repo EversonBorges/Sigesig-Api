@@ -15,6 +15,8 @@ import javax.persistence.Table;
 @Table(name = "modulo_capacitacao_destino")
 public class ModuloCapacitacaoDestino {
 
+	//Verificar exclusao
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idModuloCapacitacaoDestino;

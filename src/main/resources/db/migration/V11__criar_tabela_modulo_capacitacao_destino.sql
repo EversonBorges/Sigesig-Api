@@ -9,4 +9,12 @@ CREATE TABLE modulo_capacitacao_destino(
 	);
 	
 	INSERT INTO modulo_capacitacao_destino(turma_capacitacao_destino,dt_inicio,dt_termino) 
-	VALUES (1,'2018-05-21','2018-12-21')
+	VALUES (1,'2018-05-21','2018-12-21');
+	
+	
+	INSERT INTO modulo_capacitacao_destino(turma_capacitacao_destino,dt_inicio,dt_termino) 
+	VALUES (2,'2018-05-21','2018-12-21');
+	
+	
+	INSERT INTO modulo_capacitacao_destino(turma_capacitacao_destino,dt_inicio,dt_termino) 
+	VALUES (3,'2018-05-21','2018-12-21');

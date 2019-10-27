@@ -1,11 +1,12 @@
 package com.sigesigapi.sigesig.serviceImpl;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.sigesigapi.sigesig.model.Visitante;
@@ -22,8 +23,8 @@ public class VisitanteServiceImpl implements CommonService<Visitante> {
 	private VisitanteServiceImpl visitanteServiceImpl;
 	
 	@Override
-	public List<Visitante> listarTodos() {
-		return visitanteRepository.findAll();
+	public Page<Visitante> listarTodos(Pageable pageable) {
+		return visitanteRepository.findAll(pageable);
 	}
 
 	@Override

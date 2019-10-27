@@ -1,11 +1,12 @@
 package com.sigesigapi.sigesig.serviceImpl;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.sigesigapi.sigesig.model.Celula;
@@ -19,8 +20,8 @@ public class CelulaServiceImpl implements CommonService<Celula>{
 	private CelulaRepository celulaRepository;
 	
 	@Override
-	public List<Celula> listarTodos() {
-		return celulaRepository.findAll();
+	public Page<Celula> listarTodos(Pageable pageable) {
+		return celulaRepository.findAll(pageable);
 	}
 
 	@Override

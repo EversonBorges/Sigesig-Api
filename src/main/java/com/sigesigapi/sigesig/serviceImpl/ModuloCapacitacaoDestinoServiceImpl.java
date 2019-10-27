@@ -1,11 +1,12 @@
 package com.sigesigapi.sigesig.serviceImpl;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.sigesigapi.sigesig.model.ModuloCapacitacaoDestino;
@@ -19,20 +20,12 @@ public class ModuloCapacitacaoDestinoServiceImpl implements CommonService<Modulo
 	private ModuloCapacitacaoDestinoRepository moduloCapacitacaoDestinoRepository;
 	
 	@Override
-	public List<ModuloCapacitacaoDestino> listarTodos() {
-		return moduloCapacitacaoDestinoRepository.findAll();
+	public Page<ModuloCapacitacaoDestino> listarTodos(Pageable pageable) {
+		return moduloCapacitacaoDestinoRepository.findAll(pageable);
 	}
 
 	@Override
 	public ModuloCapacitacaoDestino salvar(ModuloCapacitacaoDestino entity) {
-		
-	//	for (Modulo list : entity.getModulo()) {
-		//	List<Modulo> listaModulo = new ArrayList<>();
-			//listaModulo.add(list);
-			//entity.setModulo(listaModulo);
-			 //moduloCapacitacaoDestinoRepository.save(entity);
-		//}
-		
 		return  moduloCapacitacaoDestinoRepository.save(entity);
 	}
 

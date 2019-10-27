@@ -12,3 +12,9 @@ CREATE TABLE templo(
 
 INSERT INTO templo (nome_fantasia,razao_social,cnpj,dt_abertura,ativo,pastor_auxiliar_id_membro,pastor_titular_id_membro)
 VALUES ('Raah Teresópolis','Igreja Batista Raah','70.473.984/0001-03','2018-12-01',true,null,null);
+
+INSERT INTO templo (nome_fantasia,razao_social,cnpj,dt_abertura,ativo,pastor_auxiliar_id_membro,pastor_titular_id_membro)
+VALUES ('Raah Sao Luiz','Igreja Batista Raah','70.473.984/0001-03','2018-12-01',true,null,null);
+
+INSERT INTO templo (nome_fantasia,razao_social,cnpj,dt_abertura,ativo,pastor_auxiliar_id_membro,pastor_titular_id_membro)
+VALUES ('Raah Sao Caetano','Igreja Batista Raah','70.473.984/0001-03','2018-12-01',true,null,null);

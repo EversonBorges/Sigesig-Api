@@ -6,4 +6,13 @@ CREATE TABLE aula(
 	);
 	
 	INSERT INTO aula(desc_aula)
-	VALUES ('Aula 01') 
+	VALUES ('Aula 01'); 
+	
+	INSERT INTO aula(desc_aula)
+	VALUES ('Aula 02'); 
+	
+	INSERT INTO aula(desc_aula)
+	VALUES ('Aula 03'); 
+	
+	INSERT INTO aula(desc_aula)
+	VALUES ('Aula 04'); 

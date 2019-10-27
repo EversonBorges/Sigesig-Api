@@ -21,5 +21,13 @@ CREATE TABLE celula(
 	
 	INSERT INTO celula(nome_celula,dt_abertura,lider_celula,timoteo_celula,templo,anfitriao,
 						supervisor_celula,supervisor_celula_area,qtd_participante,ativo) 
-	VALUES ('Manaem','2018-05-21',1,1,1,'Jose Moreira',1,1,22,true)
+	VALUES ('Manaem','2018-05-21',1,1,1,'Jose Moreira',1,1,22,true);
+	
+	INSERT INTO celula(nome_celula,dt_abertura,lider_celula,timoteo_celula,templo,anfitriao,
+						supervisor_celula,supervisor_celula_area,qtd_participante,ativo) 
+	VALUES ('Leao Juda','2018-05-21',1,1,1,'Claudio Alves ',1,1,22,true);
+	
+	INSERT INTO celula(nome_celula,dt_abertura,lider_celula,timoteo_celula,templo,anfitriao,
+						supervisor_celula,supervisor_celula_area,qtd_participante,ativo) 
+	VALUES ('Vencedores','2018-05-21',1,1,1,'Maria Moreira',1,1,22,true);
 	
