@@ -76,7 +76,12 @@ public class Membro implements Serializable{
 	
 	@Embedded
 	private Endereco endereco;
-
+	
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name = "alunos") private ChamadaCapacitacaoDestino chamada;
+	 */
 	public Long getIdMembro() {
 		return idMembro;
 	}
@@ -205,6 +210,12 @@ public class Membro implements Serializable{
 		this.endereco = endereco;
 	}
 
+	/*
+	 * public ChamadaCapacitacaoDestino getChamada() { return chamada; }
+	 * 
+	 * public void setChamada(ChamadaCapacitacaoDestino chamada) { this.chamada =
+	 * chamada; }
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;

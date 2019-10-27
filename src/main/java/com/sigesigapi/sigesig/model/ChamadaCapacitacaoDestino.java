@@ -2,12 +2,14 @@ package com.sigesigapi.sigesig.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -20,9 +22,11 @@ public class ChamadaCapacitacaoDestino {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idChamadaCapacitacaoDestino;
 	
-	@OneToMany
-	@JoinColumn(name = "aluno")
-	private List<Membro> aluno;
+	@ManyToMany(cascade = {CascadeType.DETACH})
+	@JoinTable(name="chamada_aluno", joinColumns=
+		{@JoinColumn(name="id_chamada")}, inverseJoinColumns=
+			{@JoinColumn(name="id_membro")})
+	private List<Membro> alunos;
 	
 	@OneToOne
 	@JoinColumn(name = "aula_modulo")
@@ -38,13 +42,13 @@ public class ChamadaCapacitacaoDestino {
 	public void setIdChamadaCapacitacaoDestino(Long idChamadaCapacitacaoDestino) {
 		this.idChamadaCapacitacaoDestino = idChamadaCapacitacaoDestino;
 	}
-	
-	public List<Membro> getAluno() {
-		return aluno;
+
+	public List<Membro> getAlunos() {
+		return alunos;
 	}
 
-	public void setAluno(List<Membro> aluno) {
-		this.aluno = aluno;
+	public void setAlunos(List<Membro> alunos) {
+		this.alunos = alunos;
 	}
 
 	public AulaModulo getAulaModulo() {

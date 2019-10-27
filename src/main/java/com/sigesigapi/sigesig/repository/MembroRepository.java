@@ -6,4 +6,5 @@ import com.sigesigapi.sigesig.model.Membro;
 
 public interface MembroRepository extends JpaRepository<Membro, Long> {
 
+	Membro findByCpf(String cpf);
 }

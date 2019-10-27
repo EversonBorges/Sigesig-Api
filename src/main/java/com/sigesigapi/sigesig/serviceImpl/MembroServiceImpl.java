@@ -1,5 +1,6 @@
 package com.sigesigapi.sigesig.serviceImpl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
@@ -24,7 +25,8 @@ public class MembroServiceImpl implements CommonService<Membro>{
 	private  MembroServiceImpl membroServiceImpl;
 	
 	public Page<Membro> listarTodos(Pageable pageable) {
-		return membroRepository.findAll(pageable);
+		//return membroRepository.findAll(pageable);
+		return null;
 	}
 
 	@Override
@@ -76,5 +78,15 @@ public class MembroServiceImpl implements CommonService<Membro>{
 			throw new EmptyResultDataAccessException(1);
 		}
 		return membroRetorno;
+	}
+	
+	public List<Membro> listarSemPaginacao(){
+		return membroRepository.findAll();
+	}
+	
+	public Boolean cadastroExistente(String cpf) {
+
+		Membro retorno = membroRepository.findByCpf(cpf);
+		return retorno != null ? true : false;
 	}
 }
