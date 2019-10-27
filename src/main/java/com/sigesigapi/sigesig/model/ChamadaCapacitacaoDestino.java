@@ -18,6 +18,8 @@ import javax.validation.constraints.NotNull;
 @Table(name = "chamada_capacitacao_destino")
 public class ChamadaCapacitacaoDestino {
 
+	//Teste
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idChamadaCapacitacaoDestino;
